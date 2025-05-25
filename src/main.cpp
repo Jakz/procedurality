@@ -1,10 +1,18 @@
-#include "raylib.h"
+#include "raylib.hpp"
+#include "Vector2.hpp"
+#include "Window.hpp"
 
 int main(int argc, char *argv[])
 {
   SetConfigFlags(FLAG_MSAA_4X_HINT);
+
+  raylib::Vector2 screenSize = raylib::Vector2(GetMonitorWidth(0), GetMonitorHeight(0));
+  screenSize *= 0.1f;
+
+  printf("Screen size: %s\n", screenSize.ToString().c_str());
+
+  raylib::Window window = raylib::Window(screenSize.x, screenSize.y, "Procedurality");
   
-  InitWindow(1920, 1080, "Procedurality");
   Image img = GenImagePerlinNoise(256, 256, 0, 0, 10.0f);
   Texture2D tex = LoadTextureFromImage(img);
 
