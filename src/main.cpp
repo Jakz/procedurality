@@ -6,10 +6,14 @@ int main(int argc, char *argv[])
 {
   SetConfigFlags(FLAG_MSAA_4X_HINT);
 
-  raylib::Vector2 screenSize = raylib::Vector2(GetMonitorWidth(0), GetMonitorHeight(0));
-  screenSize *= 0.1f;
+  raylib::Window bootstrap(1, 1, "Bootstrap");
 
-  printf("Screen size: %s\n", screenSize.ToString().c_str());
+  int monitor = GetCurrentMonitor();
+  raylib::Vector2 screenSize = raylib::Vector2(GetMonitorWidth(monitor), GetMonitorHeight(monitor));
+  screenSize.x = std::min(screenSize.x * 0.666f, 1920.0f);
+  screenSize.y = screenSize.x * 1.0f/(16.0f/10.0f);  // 16:9 aspect ratio
+
+  bootstrap.Close();
 
   raylib::Window window = raylib::Window(screenSize.x, screenSize.y, "Procedurality");
   

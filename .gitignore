@@ -1,2 +1,5 @@
 build/**
+projects/msvc/x64/**
+projects/msvc/.vs/**
+projects/msvc/procedurality/**
 .DS_Store
